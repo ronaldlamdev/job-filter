@@ -1,3 +1,28 @@
+/* Google Font: League Spartan 500,700 */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --desaturatedDarkCyan: #5ba4a4; 
+  --lightGrayishCyanBG: #effafa; /* Background */
+  --lightGrayishCyanFilter: #eef6f6; /* Filter */
+  --darkGrayishCyan: #7b8e8e;
+  --veryDarkGrayishCyan: #2c3a3a;
+}
+
+body {
+  @apply text-[15px] bg-[#effafa]
+}
+
+.header-bg::before {
+  content: '';
+  background-image: url('./assets/images/bg-header-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
