@@ -2,7 +2,7 @@ import JobCard from "../components/JobCard"
 
 const Listings = () => {
   return (
-    <main className="p-4 bg-[#effafa]">
+    <main className="px-4 my-20 bg-[#effafa]">
       <JobCard />
     </main>
   )
