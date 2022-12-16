@@ -1,9 +1,11 @@
-import Header from "./assets/components/Header"
+import Header from "./assets/sections/Header"
+import Listings from "./assets/sections/Listings"
 
 const App = () => {
   return (
     <>
       <Header />
+      <Listings />
     </>
   )
 }
