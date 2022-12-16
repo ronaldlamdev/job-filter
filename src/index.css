@@ -17,12 +17,14 @@ body {
   @apply text-[15px] bg-[#effafa]
 }
 
-.header-bg::before {
-  content: '';
+.header-bg {
   background-image: url('./assets/images/bg-header-mobile.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
+}
+
+@media (width >= 768px) {
+  .header-bg {
+    background-image: url('./assets/images/bg-header-desktop.svg');
+  }
 }
