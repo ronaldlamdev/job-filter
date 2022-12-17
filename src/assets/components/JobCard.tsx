@@ -1,32 +1,41 @@
-import { jobs } from "../data/data"
+import { ReactElement } from 'react';
+import { jobs } from '../data/data';
 
+interface JobsProp  {
+  company: string,
+  logo: string,
+  newJob?: ReactElement,
+  featured?: ReactElement,
+  position: string,
+  role: string,
+  level: string,
+  postedAt: string,
+  contract: string,
+  location: string,
+  languages: string[],
+  tools: string[]
+}
 
-const JobCard = () => {
+const JobCard = ({company, logo, newJob, featured, position, role, level, postedAt, contract, location, languages, tools}:JobsProp) => {
   return (
-    <div className="relative flex flex-col justify-between p-6 border-l-[#5ba4a4] border-l-4 bg-white shadow-xl shadow-[#5ba4a4]/30">
-      <img className='absolute top-[-.5rem]' src={jobs[0].logo}/>
+    <div className="relative mb-8 flex flex-col justify-between p-6 border-l-[#5ba4a4] border-l-4 bg-white shadow-xl shadow-[#5ba4a4]/30">
+      <img className='absolute top-[-2.5rem]' src={logo}/>
       <div className="text-left">
-        <h1>{jobs[0].company} <span className='uppercase'>new!</span> <span className='uppercase'>featured</span></h1>
-        <h2>{jobs[0].position}</h2>
-        <h3 className='flex items-center'>{jobs[0].postedAt} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {jobs[0].contract} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {jobs[0].location}</h3>
+        <h1>{company} {newJob} {featured}</h1>
+        <h2>{position}</h2>
+        <h3 className='flex items-center'>{postedAt} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {contract} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {jobs[0].location}</h3>
       </div>
       <div className='w-full h-[.125rem] bg-[#7b8e8e] md:hidden' />
       <div className=''>
         <div>
-          {jobs[0].role}
+          {role}
         </div>
         <div>
-          {jobs[0].level}
+          {level}
         </div>
-        <div>
-          {jobs[0].languages[0]}
-        </div>
-        <div>
-          {jobs[0].languages[1]}
-        </div>
-        <div>
-          {jobs[0].languages[2]}
-        </div>
+        {location}
+        {languages}
+        {tools}
       </div>
     </div>
   )
