@@ -1,9 +1,10 @@
-import jobs from '../data/data.json';
+import { jobs } from "../data/data"
+
 
 const JobCard = () => {
   return (
-    <div className="relative flex flex-col justify-between p-4 border-l-[#5ba4a4] border-l-4 bg-white shadow-xl shadow-[#5ba4a4]/30">
-      <img className='absolute' src={jobs[0].logo}/>
+    <div className="relative flex flex-col justify-between p-6 border-l-[#5ba4a4] border-l-4 bg-white shadow-xl shadow-[#5ba4a4]/30">
+      <img className='absolute top-[-.5rem]' src={jobs[0].logo}/>
       <div className="text-left">
         <h1>{jobs[0].company} <span className='uppercase'>new!</span> <span className='uppercase'>featured</span></h1>
         <h2>{jobs[0].position}</h2>
