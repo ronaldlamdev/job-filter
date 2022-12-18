@@ -20,12 +20,12 @@ const Listings = () => {
             location={job.location}
             languages={job.languages.map((l:string, i:number) => {
               return (
-                <div key={i}>{l}</div>
+                <div className="p-2 bg-[#effafa] text-[#5ba4a4] rounded" key={i}>{l}</div>
               )
             })}
             tools={job.tools.map((t:string, i:number) => {
               return (
-                <div key={i}>{t}</div>
+                <div className="p-2 bg-[#effafa] text-[#5ba4a4] rounded" key={i}>{t}</div>
               )
             })}
           />
