@@ -18,12 +18,12 @@ interface JobsProp  {
 
 const JobCard = ({company, logo, newJob, featured, position, role, level, postedAt, contract, location, languages, tools}:JobsProp) => {
   return (
-    <div className="relative mb-8 flex flex-col justify-between p-6 border-l-[#5ba4a4] border-l-4 bg-white shadow-xl shadow-[#5ba4a4]/30">
-      <img className='absolute top-[-2.5rem]' src={logo}/>
-      <div className="text-left">
-        <h1>{company} {newJob} {featured}</h1>
-        <h2>{position}</h2>
-        <h3 className='flex items-center'>{postedAt} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {contract} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {jobs[0].location}</h3>
+    <div className="relative mb-16 flex flex-col justify-between rounded-md px-4 py-8 border-l-[#5ba4a4] border-l-4 bg-white shadow-xl shadow-[#5ba4a4]/30">
+      <img className='absolute top-[-1.8rem] w-[3.25rem] h-[3.25rem]' src={logo}/>
+      <div className="text-left flex flex-col gap-2">
+        <h1 className='text-[#5ba4a4] font-bold text-xl'>{company} {newJob} {featured}</h1>
+        <h2 className='font-bold text-lg'>{position}</h2>
+        <h3 className='flex items-center'>{postedAt} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {contract} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {location}</h3>
       </div>
       <div className='w-full h-[.125rem] bg-[#7b8e8e] md:hidden' />
       <div className=''>
@@ -33,7 +33,6 @@ const JobCard = ({company, logo, newJob, featured, position, role, level, posted
         <div>
           {level}
         </div>
-        {location}
         {languages}
         {tools}
       </div>

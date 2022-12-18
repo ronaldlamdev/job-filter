@@ -14,7 +14,7 @@
 }
 
 body {
-  @apply text-[15px] bg-[#effafa]
+  @apply text-[15px] bg-[#effafa] font-['League_Spartan']
 }
 
 .header-bg {

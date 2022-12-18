@@ -11,8 +11,8 @@ const Listings = () => {
             company={job.company}
             logo={job.logo}
             position={job.position}
-            newJob={(job.new === true) ? <span className="uppercase">new!</span> : undefined}
-            featured={(job.featured === true) ? <span className="uppercase">featured</span> : undefined}
+            newJob={(job.new === true) ? <span className="uppercase text-white ml-5 text-base bg-[#5ba4a4] py-1 px-2 rounded-3xl">new!</span> : undefined}
+            featured={(job.featured === true) ? <span className="uppercase text-white text-base bg-[#2c3a3a] px-2 py-1 rounded-3xl">featured</span> : undefined}
             role={job.role}
             level={job.level}
             postedAt={job.postedAt}
