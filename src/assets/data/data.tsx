@@ -9,7 +9,7 @@ import Insure from '../images/insure.svg';
 import EyeCam from '../images/eyecam-co.svg';
 import TheAirFilterCompany from '../images/the-air-filter-company.svg';
 
-export const jobs:any[] = [
+export const list:any[] = [
   {
     id: 1,
     company: "Photosnap",
