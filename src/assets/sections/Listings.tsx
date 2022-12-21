@@ -1,10 +1,37 @@
 import JobCard from "../components/JobCard";
 import { list } from "../data/data";
-import {useEffect, useState} from 'react';
+import { useState} from 'react';
 
 const Listings = () => {
 
-  const [jobs, setJobs] = useState(list)
+  const [jobs, setJobs] = useState(list);
+  const [filters, setFilters] = useState<any[]>([]);
+
+  const addFilters = (filterValue:string) => {
+    const filterArray = [...filters];
+    if (filterArray.indexOf(filterValue) === -1) {
+      filterArray.push(filterValue);
+    }
+    setFilters(filterArray);
+
+    const jobsArray = [...jobs];
+    const newResult = jobsArray.filter(job => {
+      if (job.level === filterValue) {
+        return job.level === filterValue;
+      };
+      if (job.role === filterValue) {
+        return job.role === filterValue;
+      };
+      if (job.languages.includes(filterValue)) {
+        return job.languages.includes(filterValue);
+      };
+      if (job.tools.includes(filterValue)) {
+        return job.tools.includes(filterValue);
+      }
+    })
+
+    setJobs(newResult)
+  }
 
   return (
     <main className="px-4 lg:px-24 my-20 bg-[#effafa]">
