@@ -1,41 +1,70 @@
 import JobCard from "../components/JobCard";
 import { list } from "../data/data";
-import { useState} from 'react';
+import {useState, useEffect} from 'react';
 
 const Listings = () => {
 
-  const [jobs, setJobs] = useState(list);
+  const [jobs, setJobs] = useState<any[]>([]);
   const [filters, setFilters] = useState<any[]>([]);
+  const [filteredJobs, setFilteredJobs] = useState<any[]>([]);
 
-  const addFilters = (filterValue:string) => {
-    const filterArray = [...filters];
-    if (filterArray.indexOf(filterValue) === -1) {
-      filterArray.push(filterValue);
-    }
-    setFilters(filterArray);
+  useEffect(() => {
+    setJobs(list);
+  }, []);
 
-    const jobsArray = [...jobs];
-    const newResult = jobsArray.filter(job => {
-      if (job.level === filterValue) {
-        return job.level === filterValue;
-      };
-      if (job.role === filterValue) {
-        return job.role === filterValue;
-      };
-      if (job.languages.includes(filterValue)) {
-        return job.languages.includes(filterValue);
-      };
-      if (job.tools.includes(filterValue)) {
-        return job.tools.includes(filterValue);
-      }
-    })
+  useEffect(() => {
+    setFilteredJobs(jobs);
+  }, [jobs]);
 
-    setJobs(newResult)
+  useEffect(() => {
+    doFilter();
+  }, [filters]);
+
+  // Filter functions
+
+  const addFilter = (el:string) => {
+    !filters.includes(el) && setFilters(filters => [...filters, el]);
+  };
+
+  const removeFilter = (el:string) => {
+    setFilters(filters => filters.filter((elem:string) => {
+      return elem != el;
+    }));
+  };
+
+  const doFilter = () => {
+    setFilters(
+      jobs.filter((item) => {
+        filters.every((filter) => {
+          [item.role, item.level, ...item.languages, ...item.tools].includes(filter)
+        });
+      })
+    );
+  };
+
+  // Reset filters
+
+  const clear = () => {
+    setFilters([]);
   }
 
   return (
-    <main className="px-4 lg:px-24 my-20 bg-[#effafa]">
-      {jobs.map((job, i) =>  {
+    <main className="px-4 lg:px-24 my-8 bg-[#effafa]">
+
+      {/* Filter Component */}
+      <div className="bg-white px-4 py-8 mb-20 shadow-xl shadow-[#5ba4a4]/30 border-l-4 rounded-md border-[#5ba4a4] flex justify-between">
+        <div>
+          {filters.map((el) => {
+            return (
+              <div>{el}<span onClick={() => {removeFilter(el)}}>X</span></div>
+            )
+          })}
+        </div>
+        <span onClick={clear} className="text-[#5ba4a4] text-lg font-bold hover:underline hover:underline-offset-2 duration-500 cursor-pointer">Clear</span>
+      </div>
+
+      {/* Jobs mapped out */}
+      {filteredJobs.map((job, i) =>  {
         return (
           <JobCard 
             key={i}
@@ -51,12 +80,12 @@ const Listings = () => {
             location={<span className="text-[#7b8e8e]">{job.location}</span>}
             languages={job.languages.map((l:string, i:number) => {
               return (
-                <button className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300" key={i}>{l}</button>
+                <button onClick={(l) => addFilter(l)} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300" key={i}>{l}</button>
               )
             })}
             tools={job.tools.map((t:string, i:number) => {
               return (
-                <button className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300" key={i}>{t}</button>
+                <button onClick={(t) => addFilter(t)} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300" key={i}>{t}</button>
               )
             })}
           />

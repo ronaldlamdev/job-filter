@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import FilterResults from '../sections/FilterResults';
 
 interface JobsProp  {
   company: ReactElement,
