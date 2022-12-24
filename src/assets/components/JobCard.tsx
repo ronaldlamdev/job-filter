@@ -23,7 +23,7 @@ const JobCard = ({company, logo, newJob, featured, position, role, level, posted
         <img src={logo} alt={company} className='absolute md:static top-[-2rem] w-[3.75rem] h-[3.75rem] md:w-[5.1rem] md:h-[5.1rem]' />
         <div className="text-left text-lg flex flex-col gap-2">
           <div className='flex'><h1 className='text-[#5ba4a4] font-bold text-xl'>{company}</h1> {newJob} {featured}</div>
-          <h1 className='text-xl font-bold'>{position}</h1>
+          <h1 className='text-xl cursor-pointer w-fit font-bold hover:text-[#5ba4a4] duration-300'>{position}</h1>
           <div className='flex text-[#7b8e8e] items-center gap-2'>{postedAt} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {contract} <div className='w-2 h-2 rounded-full bg-[#7b8e8e]/70' /> {location}</div>
         </div>
       </div>
