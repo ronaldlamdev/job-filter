@@ -1,11 +1,14 @@
 import Header from "./assets/sections/Header"
 import Listings from "./assets/sections/Listings"
+import { FilteredJobsContextProvider } from "./context/FilterContext"
 
 const App = () => {
   return (
     <>
-      <Header />
-      <Listings />
+      <FilteredJobsContextProvider>
+        <Header />
+        <Listings />
+      </FilteredJobsContextProvider>
     </>
   )
 }

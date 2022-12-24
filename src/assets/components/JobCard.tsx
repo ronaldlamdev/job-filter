@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactEventHandler, ReactNode } from 'react';
 
 interface JobsProp  {
   company: string,
@@ -7,7 +7,9 @@ interface JobsProp  {
   featured?: ReactElement,
   position: string,
   role: string,
+  FilterRole: ReactEventHandler,
   level: string,
+  FilterLevel: ReactEventHandler,
   postedAt: string,
   contract: string,
   location: string,
@@ -15,7 +17,7 @@ interface JobsProp  {
   tools: string[]
 }
 
-const JobCard = ({company, logo, newJob, featured, position, role, level, postedAt, contract, location, languages, tools}:JobsProp) => {
+const JobCard = ({company, logo, newJob, featured, position, role, FilterRole, level, FilterLevel, postedAt, contract, location, languages, tools}:JobsProp) => {
   return (
     
     <div className="relative mb-16 flex flex-col md:flex-row md:items-center gap-4 md:gap-20 lg:gap-4 justify-between rounded-md px-4 py-8 border-l-[#5ba4a4] border-l-4 bg-white shadow-xl shadow-[#5ba4a4]/30">
@@ -29,8 +31,8 @@ const JobCard = ({company, logo, newJob, featured, position, role, level, posted
       </div>
       <div className='w-full h-[.125rem] bg-[#7b8e8e]/50 md:hidden' />
       <div className='flex gap-4 flex-wrap font-bold text-lg'>
-      <button className='p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300'>{role}</button>
-      <button className='p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300'>{level}</button>
+      <button onClick={FilterRole} className='p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300'>{role}</button>
+      <button onClick={FilterLevel} className='p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300'>{level}</button>
         {languages}
         {tools}
       </div>
