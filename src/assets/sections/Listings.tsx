@@ -1,12 +1,10 @@
 import JobCard from "../components/JobCard";
-import { useContext, useState } from 'react';
-import { FilteredJobsContext } from "../../context/FilterContext";
+import { useState } from 'react';
 import { list } from "../data/data";
 
 const Listings = () => {
 
-  const filteredJobs = useContext(FilteredJobsContext);
-  const [filterArray, setFilterArray] = useState<any[]>(filteredJobs);
+  const [filterArray, setFilterArray] = useState<any[]>(list);
 
   // Filter based on role
   const addRoleFilter = (role:string) => {
