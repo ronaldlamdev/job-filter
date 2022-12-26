@@ -7,6 +7,8 @@ const Listings = () => {
 
   const filteredJobs = useContext(FilteredJobsContext);
   const [filterArray, setFilterArray] = useState<any[]>(filteredJobs);
+
+  // Filter based on role
   const addRoleFilter = (role:string) => {
     setFilterArray(
       filterArray.filter((job) => {
@@ -15,11 +17,30 @@ const Listings = () => {
     );
   }
 
+  // Filter based on level
   const addLevelFilter = (level:string) => {
     setFilterArray(
       filterArray.filter((job) => {
         return job.level === level
       }) 
+    );
+  }
+
+  // Filter based on language
+  const addLanguageFilter = (language:string) => {
+    setFilterArray(
+      filterArray.filter((job) => {
+        return job.languages.includes(language)
+      })
+    )
+  }
+
+  // Filter based on tool
+  const addToolFilter = (tool:string) => {
+    setFilterArray(
+      filterArray.filter((job) => {
+        return job.tools.includes(tool)
+      })
     )
   }
 
@@ -57,12 +78,12 @@ const Listings = () => {
             location={job.location}
             languages={job.languages.map((l:string, i:number) => {
               return (
-                <button key={i} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300">{l}</button>
+                <button onClick={() => addLanguageFilter(l)} key={i} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300">{l}</button>
               )
             })}
             tools={job.tools.map((t:string, i:number) => {
               return (
-                <button key={i} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300">{t}</button>
+                <button onClick={() => addToolFilter(t)} key={i} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300">{t}</button>
               )
             })}
           />
