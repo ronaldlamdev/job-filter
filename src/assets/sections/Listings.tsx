@@ -4,12 +4,13 @@ import { list } from "../data/data";
 
 const Listings = () => {
 
-  const [filterArray, setFilterArray] = useState<any[]>(list);
+  // List jobs
+  const [jobs, setJobs] = useState<any[]>(list);
 
   // Filter based on role
   const addRoleFilter = (role:string) => {
-    setFilterArray(
-      filterArray.filter((job) => {
+    setJobs(
+      jobs.filter((job) => {
         return job.role === role;
       })
     );
@@ -17,8 +18,8 @@ const Listings = () => {
 
   // Filter based on level
   const addLevelFilter = (level:string) => {
-    setFilterArray(
-      filterArray.filter((job) => {
+    setJobs(
+      jobs.filter((job) => {
         return job.level === level
       }) 
     );
@@ -26,8 +27,8 @@ const Listings = () => {
 
   // Filter based on language
   const addLanguageFilter = (language:string) => {
-    setFilterArray(
-      filterArray.filter((job) => {
+    setJobs(
+      jobs.filter((job) => {
         return job.languages.includes(language)
       })
     )
@@ -35,15 +36,16 @@ const Listings = () => {
 
   // Filter based on tool
   const addToolFilter = (tool:string) => {
-    setFilterArray(
-      filterArray.filter((job) => {
+    setJobs(
+      jobs.filter((job) => {
         return job.tools.includes(tool)
       })
     )
   }
 
+
   const clear = () => {
-    setFilterArray(list);
+    setJobs(list);
   }
 
   return (
@@ -58,7 +60,7 @@ const Listings = () => {
       </div>
 
       {/* Map out from lists */}
-      {filterArray.map((job:any, i:number) => {
+      {jobs.map((job:any, i:number) => {
         return (
           <JobCard
             key={i}
