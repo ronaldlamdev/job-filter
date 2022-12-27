@@ -8,6 +8,7 @@ const Listings = () => {
   const [jobs, setJobs] = useState<any[]>(list);
 
   const addFilter = (e:string) => {
+
     setJobs(
       jobs.filter((job) => {
         if (job.role === e) {
@@ -20,9 +21,8 @@ const Listings = () => {
           return job.tools.includes(e)
         }
       })
-    )
-  }
-
+    );
+  };
 
   const clear = () => {
     setJobs(list);
