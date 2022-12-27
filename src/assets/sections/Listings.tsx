@@ -7,38 +7,18 @@ const Listings = () => {
   // List jobs
   const [jobs, setJobs] = useState<any[]>(list);
 
-  // Filter based on role
-  const addRoleFilter = (role:string) => {
+  const addFilter = (e:string) => {
     setJobs(
       jobs.filter((job) => {
-        return job.role === role;
-      })
-    );
-  }
-
-  // Filter based on level
-  const addLevelFilter = (level:string) => {
-    setJobs(
-      jobs.filter((job) => {
-        return job.level === level
-      }) 
-    );
-  }
-
-  // Filter based on language
-  const addLanguageFilter = (language:string) => {
-    setJobs(
-      jobs.filter((job) => {
-        return job.languages.includes(language)
-      })
-    )
-  }
-
-  // Filter based on tool
-  const addToolFilter = (tool:string) => {
-    setJobs(
-      jobs.filter((job) => {
-        return job.tools.includes(tool)
+        if (job.role === e) {
+          return job.role === e;
+        } else if (job.level === e) {
+          return job.level === e;
+        } else if (job.languages.includes(e)) {
+          return job.languages.includes(e)
+        } else if (job.tools.includes(e)) {
+          return job.tools.includes(e)
+        }
       })
     )
   }
@@ -70,20 +50,20 @@ const Listings = () => {
             featured={(job.new === true) ? <span className="uppercase text-white ml-4 text-base bg-[#2c3a3a] py-1 px-2 rounded-3xl">featured!</span> : undefined}
             position={job.position}
             role={job.role}
-            FilterRole={() => addRoleFilter(job.role)}
+            FilterRole={() => addFilter(job.role)}
             level={job.level}
-            FilterLevel={() => addLevelFilter(job.level)}
+            FilterLevel={() => addFilter(job.level)}
             postedAt={job.postedAt}
             contract={job.contract}
             location={job.location}
             languages={job.languages.map((l:string, i:number) => {
               return (
-                <button onClick={() => addLanguageFilter(l)} key={i} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300">{l}</button>
+                <button onClick={() => addFilter(l)} key={i} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300">{l}</button>
               )
             })}
             tools={job.tools.map((t:string, i:number) => {
               return (
-                <button onClick={() => addToolFilter(t)} key={i} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300">{t}</button>
+                <button onClick={() => addFilter(t)} key={i} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300">{t}</button>
               )
             })}
           />
