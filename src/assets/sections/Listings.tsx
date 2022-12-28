@@ -33,7 +33,8 @@ const Listings = () => {
       {/* Filter Component */}
       <div className="bg-white px-4 py-8 mb-20 shadow-xl shadow-[#5ba4a4]/30 border-l-4 rounded-md border-[#5ba4a4] flex justify-between">
         <div>
-          
+          {/* This would be where I map out the buttons showing which filter buttons got added from an array, but couldn't bc creating a Filter Array 
+          presenting a lot of issues such as only storing 1 index even when I click on more filter tags */}
         </div>
         <span onClick={clear} className="text-[#5ba4a4] text-lg font-bold hover:underline hover:underline-offset-2 duration-500 cursor-pointer">Clear</span>
       </div>
