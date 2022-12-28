@@ -8,7 +8,6 @@ const Listings = () => {
   const [jobs, setJobs] = useState<any[]>(list);
 
   const addFilter = (e:string) => {
-
     setJobs(
       jobs.filter((job) => {
         if (job.role === e) {
@@ -26,7 +25,7 @@ const Listings = () => {
 
   const clear = () => {
     setJobs(list);
-  }
+  };
 
   return (
     <main className="px-4 lg:px-24 my-8 bg-[#effafa]">
