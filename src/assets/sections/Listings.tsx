@@ -1,30 +1,51 @@
 import JobCard from "../components/JobCard";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { list } from "../data/data";
 
 const Listings = () => {
 
   // List jobs
-  const [jobs, setJobs] = useState<any[]>(list);
+  const [jobs, setJobs] = useState<any[]>([]);
+
+  // Store filters
+  const [filters, setFilters] = useState<any[]>([]);
+
+  // Store filtered jobs to list
+  const [filteredJobs, setFilteredJobs] = useState<any[]>([]);
+
+  useEffect(() => {
+    setJobs(list);
+  }, []);
+
+  useEffect(() => {
+    setFilteredJobs(jobs);
+  }, [jobs]);
+
+  useEffect(() => {
+    doFilter();
+  }, [filters]);
+
+  // Filter functions
 
   const addFilter = (e:string) => {
-    setJobs(
-      jobs.filter((job) => {
-        if (job.role === e) {
-          return job.role === e;
-        } else if (job.level === e) {
-          return job.level === e;
-        } else if (job.languages.includes(e)) {
-          return job.languages.includes(e)
-        } else if (job.tools.includes(e)) {
-          return job.tools.includes(e)
-        }
-      })
-    );
+    !filters.includes(e) && setFilters(filters => [...filters, e])
   };
 
+  const removeFilter = (e:string) => {
+    setFilters(filters => filters.filter(elem => {return elem != e}));
+  };
+
+  const doFilter = () => {
+    setFilteredJobs(
+      jobs.filter(job => 
+        filters.every(filter => [job.role, job.level, ...job.languages, ...job.tools].includes(filter))
+      )
+    )
+  }
+
   const clear = () => {
-    setJobs(list);
+    setFilters([]);
+    setFilteredJobs(jobs);
   };
 
   return (
@@ -32,15 +53,20 @@ const Listings = () => {
 
       {/* Filter Component */}
       <div className="bg-white px-4 py-8 mb-20 shadow-xl shadow-[#5ba4a4]/30 border-l-4 rounded-md border-[#5ba4a4] flex justify-between">
-        <div>
-          {/* This would be where I map out the buttons showing which filter buttons got added from an array, but couldn't bc creating a Filter Array 
-          presenting a lot of issues such as only storing 1 index even when I click on more filter tags */}
+        <div className="flex justify-around items-center flex-wrap gap-4">
+          {filters.map(el => {
+            return (
+              <button onClick={() => removeFilter(el)} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300 text-xl font-bold">
+                {el}
+              </button>
+            )
+          })}
         </div>
-        <span onClick={clear} className="text-[#5ba4a4] text-lg font-bold hover:underline hover:underline-offset-2 duration-500 cursor-pointer">Clear</span>
+        <span onClick={() => clear()} className="text-[#5ba4a4] text-lg font-bold hover:underline hover:underline-offset-2 duration-500 cursor-pointer">Clear</span>
       </div>
 
       {/* Map out from lists */}
-      {jobs.map((job:any, i:number) => {
+      {filteredJobs.map((job:any, i:number) => {
         return (
           <JobCard
             key={i}
