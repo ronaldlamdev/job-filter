@@ -45,7 +45,7 @@ const Listings = () => {
 
   const clear = () => {
     setFilters([]);
-    setFilteredJobs(jobs);
+    setFilteredJobs(list);
   };
 
   return (
