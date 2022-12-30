@@ -1,6 +1,7 @@
 import JobCard from "../components/JobCard";
 import { useState, useEffect } from 'react';
 import { list } from "../data/data";
+import {AiOutlineClose} from 'react-icons/ai';
 
 const Listings = () => {
 
@@ -45,7 +46,6 @@ const Listings = () => {
 
   const clear = () => {
     setFilters([]);
-    setFilteredJobs(list);
   };
 
   return (
@@ -56,9 +56,14 @@ const Listings = () => {
         <div className="flex justify-around items-center flex-wrap gap-4">
           {filters.map(el => {
             return (
-              <button onClick={() => removeFilter(el)} className="p-2 bg-[#effafa] text-[#5ba4a4] rounded cursor-pointer hover:bg-[#5ba4a4] hover:text-white duration-300 text-xl font-bold">
-                {el}
-              </button>
+              <div className="flex items-center">
+                <div className="p-2 bg-[#effafa] text-[#5ba4a4] rounded-l text-xl font-bold">
+                  {el}
+                </div>
+                <div onClick={() => removeFilter(el)} className="bg-[#5ba4a4] p-2 text-white rounded-r text-xl font-bold cursor-pointer">
+                  <AiOutlineClose size={27} />
+                </div>
+              </div>
             )
           })}
         </div>
